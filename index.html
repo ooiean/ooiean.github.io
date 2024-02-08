@@ -1,5 +1,29 @@
 <html>
-  <body>
-  <h1>success</h1>
-  </body>
+
+  <div id="result"></div>
+
+  <script>
+
+    async function callHelloAPI() {
+      const url = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=65539"
+      const headers = {
+        'Content-Type': 'application/json',
+        'AccountKey': 'sSlzPMS6RmCp/BX+DK0YRg==' 
+      };
+    
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: headers
+      });
+    
+      if(!response.ok) {
+        const message = `An error has occurred: ${response.status} - ${response.statusText}`;
+        throw new Error(message);
+      }
+      const data = await response.text();
+      
+      document.getElementById('result').innerText = data;
+    }
+    callHelloAPI(); 
+  </script>
 </html>
