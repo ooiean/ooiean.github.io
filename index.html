@@ -3,27 +3,7 @@
   <div id="result"></div>
 
   <script>
-   (function(global) {
 
-      var originalFetch = global.fetch;
-      
-      global.fetch = function(input, init) {
-        
-        // Allow HTTP requests
-        url.replace('https://', 'http://'); 
-        
-        return originalFetch(input, init)
-          .then(response => {
-             // Check for errors and reject promise
-             if (!response.ok) {
-               throw Error(response.statusText); 
-             }
-             return response;
-          });
-    
-      };
-    
-    })(window);
     
     async function callHelloAPI() {
       const url = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=65539"
